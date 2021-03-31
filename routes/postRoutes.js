@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
       .sort({ createdAt: -1 });
     return res.status(200).json({ posts: posts });
   } catch (error) {
+    console.log('error: ', error);
     return res.status(500).json({ message: 'Something is wrong!' });
   }
 });
