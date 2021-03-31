@@ -3,8 +3,8 @@ const chalk = require('chalk');
 
 const connectDB = async () => {
   try {
-    // process.env.URI_DB
-    await mongoose.connect(process.env.URI_DB_TEST, {
+    // process.env.URI_DB URI_DB_TEST
+    await mongoose.connect(process.env.URI_DB, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
       useCreateIndex: true,
