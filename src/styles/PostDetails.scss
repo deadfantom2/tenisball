@@ -1,0 +1,125 @@
+.post__detals {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+
+  &_header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+
+    &_media {
+      width: 30%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+
+      & > .no-image {
+        font-size: 15rem;
+      }
+    }
+
+    &_description {
+      width: 70%;
+      li {
+        list-style: none;
+        margin-bottom: 1rem;
+      }
+
+      h6 {
+        margin-bottom: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .text-span {
+        display: inline-block;
+        text-align: justify;
+      }
+    }
+    .show-video {
+      background-color: yellow;
+      border: 1px solid black;
+      width: 8rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  &_footer {
+    margin: 0 1rem 1rem 1rem;
+
+    & > form > .form-group {
+      margin-bottom: 0.5rem;
+    }
+
+    .add_comment {
+      width: 100%;
+      border-radius: 1rem;
+    }
+  }
+}
+
+// @media only screen and (max-width: 769px),
+//   (min-device-width: 769px) and (max-device-width: 769px) {
+
+@media only screen and (max-width: 992px),
+  (min-device-width: 992px) and (max-device-width: 992px) {
+  .post__detals {
+    &_header {
+      flex-direction: column;
+
+      &_media {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      &_description {
+        width: 100%;
+        ul {
+          padding: 0px;
+        }
+        padding: 0 1rem 0 1rem;
+      }
+    }
+
+    &_footer {
+      & > .mb-3 {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  li {
+    border: 1px solid black;
+  }
+  .video-frame {
+    width: 100%;
+    border: 1px solid red;
+  }
+  .video-frame > iframe {
+    width: 100%;
+    height: 15rem;
+  }
+}
+
+.carousel {
+  width: 19rem !important;
+  height: 19rem !important;
+  z-index: 0;
+
+  &-item > img {
+    width: 19rem;
+    height: 19rem;
+  }
+}
+
+.video-frame {
+  display: none;
+}

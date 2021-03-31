@@ -1,0 +1,67 @@
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 6rem;
+  margin-left: 2.25rem;
+}
+
+.form {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.title-profile {
+  width: 10rem !important;
+}
+
+.h5-profile,
+.h5-password,
+.h5-status {
+  border-bottom: 2px dashed grey;
+}
+
+.custom-switch
+  .custom-control-input:disabled:checked
+  ~ .custom-control-label::before {
+  background-color: #4bbf73;
+}
+
+.custom-control-input:disabled ~ .custom-control-label::before,
+.custom-control-input[disabled] ~ .custom-control-label::before {
+  background-color: red;
+}
+
+.custom-control-label {
+  color: #55595c !important;
+  &::after {
+    background-color: white !important;
+  }
+}
+
+.custom-control {
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 769px),
+  (min-device-width: 769px) and (max-device-width: 769px) {
+  .profile {
+    grid-template-columns: none;
+
+    grid-row-gap: 9rem;
+    grid-template-rows: 1fr 1fr 1fr !important;
+
+    &-info {
+      height: 15rem;
+    }
+
+    &-password {
+      height: 15rem;
+    }
+
+    &-status {
+      height: 15rem;
+      position: relative !important;
+      top: -6rem;
+    }
+  }
+}

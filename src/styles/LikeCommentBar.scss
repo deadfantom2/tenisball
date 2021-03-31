@@ -1,0 +1,26 @@
+.notLiked {
+  color: grey;
+}
+
+.liked {
+  color: #12bee4;
+}
+
+.favored {
+  color: #ffa500;
+}
+
+.notFavored {
+  color: #808080;
+}
+
+@media only screen and (max-width: 769px),
+  (min-device-width: 769px) and (max-device-width: 769px) {
+  .fa-heart {
+    font-size: 1.25rem;
+
+    & > span {
+      font-size: 1rem;
+    }
+  }
+}

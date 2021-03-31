@@ -1,0 +1,61 @@
+.edit__post {
+  border: 1px solid red;
+}
+
+.photos {
+  margin: 1.5rem 0 1rem 0;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 25vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  &-edit > .image-style {
+    width: 6rem;
+    height: 6rem;
+
+    margin: 0 0.5rem 0 0;
+  }
+}
+
+.fa-trash-alt {
+  font-size: 1.5rem;
+  position: relative;
+  right: 6rem;
+  top: -1rem;
+  color: wheat;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+    opacity: 0.5;
+  }
+}
+/* SCROLL */
+.photos::-webkit-scrollbar {
+  width: 1rem; /* largeur scroll */
+}
+.photos::-webkit-scrollbar-track {
+  background: #1e1e24; /* couleur de scroll */
+  border-radius: 10px;
+  border: 1px solid #aeaeb5;
+  // height: 75vh;
+}
+.photos::-webkit-scrollbar-thumb::-webkit-scrollbar-thumb {
+  background: #6649b8; /* couleur de pointeur dans scroll */
+  border-radius: 10px;
+  border: 1px solid #aeaeb5;
+}
+.photos::-webkit-scrollbar-thumb:hover {
+  background: red;
+  border-radius: 1rem;
+}
+.photos::-webkit-scrollbar-thumb:active {
+  background: #aeaeb5; /* When you selected scroll*/
+}
