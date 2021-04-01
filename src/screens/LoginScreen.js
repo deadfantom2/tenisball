@@ -6,8 +6,8 @@ import AuthContaier from '../containers/AuthContainer';
 import { login } from '../actions/userActions';
 
 const LoginScreen = ({ history, location }) => {
-  const [email, setEmail] = useState('cameratest811@gmail.com');
-  const [password, setPassword] = useState('frfr');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const firstElement = useRef(null);
 
   const redirect = location.search ? location.search.split('=')[1] : '/';

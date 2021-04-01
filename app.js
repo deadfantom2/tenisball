@@ -57,11 +57,11 @@ app.post('/send-about-coin', async (req, res) => {
 if (process.env.NODE_ENV === 'production') {
   console.log('Mode Production is runnig...');
 
-  app.use(express.static(path.join(__dirname, '/build')));
+  // app.use(express.static(path.join(__dirname, '/build')));
 
   app.get('*', (req, res) => {
     console.log('zlekjflke');
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    // res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
   });
 } else {
   app.get('/', (req, res) => res.send('API IS RUNNING...'));
