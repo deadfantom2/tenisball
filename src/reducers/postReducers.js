@@ -10,10 +10,6 @@ import {
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
   CREATE_POST_RESET,
-  EDIT_POST_REQUEST,
-  EDIT_POST_SUCCESS,
-  EDIT_POST_FAIL,
-  EDIT_POST_RESET,
 } from '../constants/postConstants';
 
 export const postListReducer = (state = { posts: [] }, action) => {
@@ -54,21 +50,6 @@ export const addPostReducer = (state = { newpost: {} }, action) => {
       return { loading: false, newpost: {} };
     case CREATE_POST_RESET:
       return { loading: false, newpost: {} };
-    default:
-      return state;
-  }
-};
-
-export const postEditReducer = (state = {}, action) => {
-  switch (action.type) {
-    case EDIT_POST_REQUEST:
-      return { loading: true };
-    case EDIT_POST_SUCCESS:
-      return { loading: false, message: action.payload };
-    case EDIT_POST_FAIL:
-      return { loading: false };
-    case EDIT_POST_RESET:
-      return { loading: false };
     default:
       return state;
   }

@@ -9,14 +9,16 @@ const AuthContainer = ({ children, loading }) => {
   const { message } = useSelector((state) => state.successMsg);
   const { error } = useSelector((state) => state.errorMsg);
   return (
-    <Row className="justify-content-md-center auth">
-      <Col xs={12} md={6}>
-        {loading && <Loader />}
-        {error && <Message variant="danger">{error}</Message>}
-        {message && <Message variant="success">{message}</Message>}
-        {children}
-      </Col>
-    </Row>
+    <>
+      {loading && <Loader />}
+      <Row className="justify-content-md-center auth">
+        <Col xs={12} md={6}>
+          {error && <Message variant="danger">{error}</Message>}
+          {message && <Message variant="success">{message}</Message>}
+          {children}
+        </Col>
+      </Row>
+    </>
   );
 };
 

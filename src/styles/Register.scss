@@ -3,4 +3,13 @@
     color: red;
     font-style: italic;
   }
+
+  & > .dropdown > .dropdown-menu.show {
+    width: 22rem;
+    display: flex !important;
+    flex-wrap: wrap;
+    & > .dropdown-item {
+      width: 50%;
+    }
+  }
 }

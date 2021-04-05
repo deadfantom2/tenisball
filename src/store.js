@@ -14,7 +14,6 @@ import {
   postListReducer,
   postOneReducer,
   addPostReducer,
-  postEditReducer,
 } from './reducers/postReducers';
 
 const reducer = combineReducers({
@@ -24,7 +23,6 @@ const reducer = combineReducers({
   postList: postListReducer,
   postOne: postOneReducer,
   addPost: addPostReducer,
-  editPost: postEditReducer,
   successMsg: successMsgReducer,
   errorMsg: errorMsgReducer,
 });

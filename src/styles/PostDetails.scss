@@ -64,9 +64,6 @@
   }
 }
 
-// @media only screen and (max-width: 769px),
-//   (min-device-width: 769px) and (max-device-width: 769px) {
-
 @media only screen and (max-width: 992px),
   (min-device-width: 992px) and (max-device-width: 992px) {
   .post__detals {
@@ -96,12 +93,8 @@
     }
   }
 
-  li {
-    border: 1px solid black;
-  }
   .video-frame {
     width: 100%;
-    border: 1px solid red;
   }
   .video-frame > iframe {
     width: 100%;

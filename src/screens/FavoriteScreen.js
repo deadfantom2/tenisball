@@ -35,11 +35,7 @@ const FavoriteScreen = () => {
 
   return (
     <>
-      <Link to="/" className="btn btn-light my-3">
-        Go back
-      </Link>
-
-      <LoadAndErrorContainer loading={loading} title="Your favorites">
+      <LoadAndErrorContainer loading={loading} title="Your favorites posts">
         <div className="main-favorite-page">
           {favorites.map((item, index) => (
             <FavoritePost

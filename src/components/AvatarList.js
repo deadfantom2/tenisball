@@ -32,7 +32,11 @@ const AvatarList = ({ setAvatar }) => {
               value={tsar.photoPath}
               onClick={() => setAvatar(tsar.photoPath)}
             >
-              <Image src={tsar.photoPath} roundedCircle className="img_tsar" />
+              <Image
+                src={tsar.photoPath}
+                roundedCircle
+                className="avatar__tsar"
+              />
               {'    '}
               {tsar.name}
             </Dropdown.Item>

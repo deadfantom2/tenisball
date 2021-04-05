@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, NavDropdown, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { logout } from '../actions/userActions';
+import '../styles/Header.scss';
 
-const Header = () => {
+const Header = ({ location }) => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
+
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
 
   const logoutHandler = async () => {
     dispatch(logout());
@@ -30,7 +36,7 @@ const Header = () => {
                   <Image
                     src={userInfo.user.avatar}
                     roundedCircle
-                    className="img_tsar"
+                    className="avatar__tsar"
                   />
                   <NavDropdown id="username" title={userInfo.user.name}>
                     <LinkContainer to="/profile">

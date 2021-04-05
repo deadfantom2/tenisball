@@ -12,7 +12,7 @@ const AuthRoutes = ({ children, ...rest }) => {
     document.title = doctitle;
   }, [doctitle, title]);
 
-  if (userInfo === null) {
+  if (userInfo === null || userInfo === undefined) {
     return <Route {...rest} />;
   } else {
     return <Redirect to="/" />;

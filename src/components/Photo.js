@@ -3,6 +3,7 @@ import { Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import mediumZoom from 'medium-zoom';
 import PhotoZoom from './PhotoZoom';
+import '../styles/Photo.scss';
 
 const fetchImage = async (route, user, name) => {
   const {
@@ -41,7 +42,7 @@ const Photo = ({ photo, postTitle, styleClass }) => {
     return (
       <PhotoZoom
         src={img}
-        className={'image-style'}
+        className="image-style"
         zoom={zoom.current}
         background="#000"
         alt={postTitle}

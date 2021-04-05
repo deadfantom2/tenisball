@@ -75,9 +75,7 @@ const RegisterScreen = ({ history, location }) => {
     },
   });
 
-  useEffect(() => {
-    firstElement.current.focus();
-  }, [history, userInfo, redirect]);
+  useEffect(() => {}, [history, userInfo, redirect]);
 
   return (
     <AuthContaier loading={loading}>

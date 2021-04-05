@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, Carousel } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,6 @@ const PostDetails = ({ match }) => {
   const [post, setPost] = useState({ photos: [], comments: [] });
   const [comment, setComment] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const firstElement = useRef(null);
 
   const dispatch = useDispatch();
   const { loading, post: postOne } = useSelector((state) => state.postOne);
@@ -27,8 +26,6 @@ const PostDetails = ({ match }) => {
   ];
 
   useEffect(() => {
-    firstElement.current.focus();
-
     if (!postOne || Object.keys(postOne).length === 0) {
       dispatch(onePost(match.params.id));
     } else {
@@ -51,10 +48,7 @@ const PostDetails = ({ match }) => {
 
   return (
     <>
-      <Link to="/" className="btn btn-light my-3" ref={firstElement}>
-        Go back
-      </Link>
-      <LoadAndErrorContainer loading={loading}>
+      <LoadAndErrorContainer loading={loading} title="More detail of the post">
         <div className="post__detals">
           <div className="post__detals_header">
             <div className="post__detals_header_media">

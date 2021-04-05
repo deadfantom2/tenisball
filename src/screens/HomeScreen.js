@@ -4,6 +4,7 @@ import { Col } from 'react-bootstrap';
 import Post from '../components/Post';
 import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
 import { listPosts } from '../actions/postActions';
+import '../styles/HomeScreen.scss';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();

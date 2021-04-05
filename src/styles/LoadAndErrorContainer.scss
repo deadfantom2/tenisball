@@ -1,0 +1,25 @@
+.panel-back {
+  padding: 1rem 0 1rem 0;
+
+  & > .container {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+
+    & > a {
+      margin: 0rem !important;
+      padding: 0;
+      font-size: 1rem;
+    }
+
+    & > span {
+      padding-right: 1rem;
+      font-size: 1rem;
+      text-transform: uppercase !important;
+    }
+  }
+}
+
+.title {
+  margin: 1rem 0 1rem 0;
+}

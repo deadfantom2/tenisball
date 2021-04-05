@@ -130,11 +130,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width: 15rem;
     height: 15rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+
+    & > .close-dropzone {
+      cursor: pointer;
+      position: absolute;
+      top: 0.1rem;
+      right: 1rem;
+      color: black;
+      font-size: 1.75rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
   }
 }
 
@@ -162,6 +172,17 @@
     transform: translate(-50%, -50%);
     overflow: hidden;
 
+    & > .close-dropzone {
+      padding: 0 1rem 0 1rem;
+      display: flex;
+      justify-content: flex-end;
+      color: black;
+      cursor: pointer;
+      font-size: 1.75rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
     & > span {
       display: flex;
       justify-content: center;
@@ -178,18 +199,6 @@
       height: 1.25rem;
     }
   }
-}
-
-.close-dropzone {
-  cursor: pointer;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: black;
-  text-shadow: violet;
-  font-size: 1.75rem;
-  font-weight: bold;
-  transition: 0.3s;
 }
 
 .error {

@@ -44,6 +44,7 @@ const Footer = () => {
         .required('* Message must be required'),
     }),
     onSubmit: (body, { resetForm }) => {
+      console.log(resetForm);
       const { emailFooter, nameFooter, messageFooter } = body;
       dispatch(
         sendEmailContact({
@@ -62,21 +63,24 @@ const Footer = () => {
         <Container>
           <Row className="contact">
             <div className="contact-mobile">
-              <i className="fab fa-viber"></i>
-              <i className="fab fa-telegram"></i>
-              <i className="fab fa-whatsapp"></i>
-              <a href="https://www.instagram.com/monnaierusse/">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="https://www.youtube.com">
-                <i className="fab fa-youtube"></i>
-              </a>
-
-              <span>
-                +336 50 00 46 41
-                <br />
-                +38067 884 1 884
-              </span>
+              <div>
+                <i className="fab fa-viber"></i>
+                <i className="fab fa-telegram"></i>
+                <i className="fab fa-whatsapp"></i>
+                <a href="https://www.instagram.com/monnaierusse/">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com">
+                  <i className="fab fa-youtube"></i>
+                </a>
+              </div>
+              <div className="contact-mobile_phones">
+                <span>
+                  +336 50 00 46 41
+                  <br />
+                  +38067 884 1 884
+                </span>
+              </div>
             </div>
 
             <div className="contact-email">

@@ -1,58 +1,83 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import AuthContaier from '../containers/AuthContainer';
 import { login } from '../actions/userActions';
 
-const LoginScreen = ({ history, location }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const firstElement = useRef(null);
-
+const LoginScreen = ({ location }) => {
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
   const dispatch = useDispatch();
-  const { loading, userInfo } = useSelector((state) => state.userLogin);
+  const { loading } = useSelector((state) => state.userLogin);
 
-  useEffect(() => {
-    firstElement.current.focus();
-    if (userInfo) {
-      history.push(redirect);
-    }
-  }, [history, userInfo, redirect, firstElement]);
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    touched,
+    isValid,
+    errors,
+  } = useFormik({
+    initialValues: {
+      emailLogin: '',
+      passwordLogin: '',
+    },
+    validationSchema: Yup.object({
+      emailLogin: Yup.string()
+        .email('* Email is invalid')
+        .min(11, '* Email must be least than 11 characters')
+        .max(50, '* Email must be shorter than 50 characters')
+        .required('* Email is required'),
+      passwordLogin: Yup.string()
+        .min(4, '* Password must be least than 3 characters')
+        .max(100, '* Password must be shorter than 100 characters')
+        .required('* Password must be required'),
+    }),
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(login({ email, password }));
-  };
+    onSubmit: (body, { resetForm }) => {
+      const { emailLogin, passwordLogin } = body;
+      dispatch(login({ email: emailLogin, password: passwordLogin }));
+      resetForm({ body: '' });
+    },
+  });
 
   return (
     <AuthContaier loading={loading}>
-      <h1 className="title" ref={firstElement}>
-        Sign In
-      </h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group>
+      <h1 className="title">Sign In</h1>
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="emailLogin">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={values.emailLogin}
+            onChange={handleChange}
+            onBlur={handleBlur}
           ></Form.Control>
+          {touched.emailLogin && errors.emailLogin ? (
+            <p>{errors.emailLogin}</p>
+          ) : null}
         </Form.Group>
-        <Form.Group>
+        <Form.Group controlId="passwordLogin">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={values.passwordLogin}
+            onChange={handleChange}
+            onBlur={handleBlur}
           ></Form.Control>
+          {touched.passwordLogin && errors.passwordLogin ? (
+            <p>{errors.passwordLogin}</p>
+          ) : null}
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" disabled={!isValid}>
           Login
         </Button>
       </Form>

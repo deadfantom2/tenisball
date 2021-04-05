@@ -8,7 +8,7 @@ require('dotenv').config();
 const User = require('../models/User');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
-const Photo = require('../models/Photo');
+// const Photo = require('../models/Photo');
 
 const router = express.Router();
 
@@ -16,10 +16,11 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.find({})
-      .populate('user')
+      .populate('user', 'name')
       .populate('comments.comment')
       .populate('photos.photo')
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .select('_id title certificate likes totalLikes comments favorites');
     return res.status(200).json({ posts: posts });
   } catch (error) {
     console.log('error: ', error);

@@ -5,6 +5,7 @@ import Photo from './Photo';
 import { addInFavoritePost } from '../actions/userActions';
 import { addLikePost } from '../actions/postActions';
 import LikeCommentBar from '../components/LikeCommentBar';
+import '../styles/Post.scss';
 
 const Post = ({ post }) => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Post = ({ post }) => {
   };
 
   const postFavorite = (post) => {
+    console.log(post);
     const { _id, title, photos } = post;
     if (post.photos.length > 0) {
       dispatch(
@@ -33,6 +35,7 @@ const Post = ({ post }) => {
         })
       );
     } else {
+      /**TODO IF NOT PHOTO DO SOMETHINGS   */
     }
   };
 

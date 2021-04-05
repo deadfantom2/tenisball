@@ -45,18 +45,18 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const findUser = await User.findOne({ email });
-    const {
-      password: userPwd,
-      isVerified,
-      roles,
-      name,
-      _id,
-      avatar,
-    } = findUser;
 
     if (!findUser) {
       return res.status(404).json({ message: `User not found!` });
     } else {
+      const {
+        password: userPwd,
+        isVerified,
+        roles,
+        name,
+        _id,
+        avatar,
+      } = findUser;
       const isMatch = await findUser.comparePassword(password, userPwd);
 
       if (isMatch && isVerified) {
@@ -80,7 +80,8 @@ router.post('/login', async (req, res) => {
       }
     }
   } catch (error) {
-    return res.status(500).json({ message: 'Something is wrong!' });
+    console.log(error);
+    return res.status(500).json({ message: 'Something is wrongs!' });
   }
 });
 

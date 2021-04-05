@@ -126,11 +126,7 @@ const ProfileScreen = ({ history, location }) => {
 
   return (
     <>
-      <Link to="/" className="btn btn-light my-3">
-        Go back
-      </Link>
-
-      <LoadAndErrorContainer loading={loading}>
+      <LoadAndErrorContainer loading={loading} title="Your profile">
         <div className="profile">
           <div className="profile-info">
             <h5 className="h5-profile">Profile</h5>

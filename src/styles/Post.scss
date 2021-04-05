@@ -1,0 +1,77 @@
+.coin_post {
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  width: 16rem;
+  height: 28rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  -webkit-box-shadow: -1px 2px 29px 3px rgba(159, 164, 191, 1);
+  -moz-box-shadow: -1px 2px 29px 3px rgba(159, 164, 191, 1);
+  box-shadow: -1px 2px 29px 3px rgba(159, 164, 191, 1);
+
+  &:hover {
+    -webkit-box-shadow: -1px 2px 29px 3px rgba(79, 98, 189, 1);
+    -moz-box-shadow: -1px 2px 29px 3px rgba(79, 98, 189, 1);
+    box-shadow: -1px 2px 29px 3px rgba(79, 98, 189, 1);
+  }
+
+  &__header {
+    padding-top: 1rem;
+    height: 17rem;
+    // border: 1px solid red;
+  }
+  &__body {
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid green;
+
+    &_title,
+    &_certif {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &_title,
+    &_text {
+      height: 3rem;
+    }
+    &_text {
+      margin-left: 1rem;
+
+      & > a > h6 {
+        margin: 0.5rem 0 0 0;
+        color: grey;
+      }
+
+      & > p {
+        margin: 0 0 0.5rem 0;
+        color: grey;
+      }
+    }
+    &_certif {
+      height: 2rem;
+    }
+  }
+  &__footer {
+    height: 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    // border: 1px solid red;
+
+    &_like,
+    &_comment {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > span {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
