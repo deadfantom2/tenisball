@@ -84,7 +84,7 @@ const EditPost = ({ history, match }) => {
 
   return (
     <>
-      <LoadAndErrorContainer loading={loading} title="Modification of post">
+      <LoadAndErrorContainer loading={loading} title="Modification">
         <div className="createandedit__post_form" ref={firstElement}>
           <CEPostForm
             submitHandler={submitHandler}

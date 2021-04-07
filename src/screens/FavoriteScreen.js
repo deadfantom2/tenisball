@@ -34,7 +34,7 @@ const FavoriteScreen = () => {
 
   return (
     <>
-      <LoadAndErrorContainer loading={loading} title="Your favorites posts">
+      <LoadAndErrorContainer loading={loading} title="Your favorites">
         <div className="main-favorite-page">
           {favorites.map((item, index) => (
             <FavoritePost

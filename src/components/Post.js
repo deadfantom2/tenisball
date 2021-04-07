@@ -23,7 +23,6 @@ const Post = ({ post }) => {
   };
 
   const postFavorite = (post) => {
-    console.log(post);
     const { _id, title, photos } = post;
     if (post.photos.length > 0) {
       dispatch(

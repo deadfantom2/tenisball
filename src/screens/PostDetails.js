@@ -47,7 +47,7 @@ const PostDetails = ({ match }) => {
 
   return (
     <>
-      <LoadAndErrorContainer loading={loading} title="More detail of the post">
+      <LoadAndErrorContainer loading={loading} title="Post's detail">
         <div className="post__detals">
           <div className="post__detals_header">
             <div className="post__detals_header_media">
