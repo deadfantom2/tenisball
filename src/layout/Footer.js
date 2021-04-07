@@ -44,7 +44,6 @@ const Footer = () => {
         .required('* Message must be required'),
     }),
     onSubmit: (body, { resetForm }) => {
-      console.log(resetForm);
       const { emailFooter, nameFooter, messageFooter } = body;
       dispatch(
         sendEmailContact({
@@ -54,6 +53,7 @@ const Footer = () => {
         })
       );
       resetForm({ body: '' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
   });
 
@@ -132,7 +132,7 @@ const Footer = () => {
         </Container>
       </div>
 
-      <div className="copyright">Copyright &copy Russian coins</div>
+      <div className="copyright">Copyright &copy VSH Russian coins</div>
     </footer>
   );
 };

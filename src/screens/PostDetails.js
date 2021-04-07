@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Form, Carousel } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { onePost, addCommentPost } from '../actions/postActions';

@@ -94,7 +94,6 @@ export const login = (args) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(`/api/auth/login`, args, config);
-    console.log('data: ', data);
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     const { token, user, expiresIn } = data;

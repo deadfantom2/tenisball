@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
 import FavoritePost from '../components/FavoritePost';
 import { GETPROFILE_INFO_RESET } from '../constants/userConstants';

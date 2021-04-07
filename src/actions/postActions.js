@@ -209,12 +209,7 @@ export const editComment = (id, body) => async (dispatch, getState) => {
 
   try {
     dispatch({ type: EDIT_COMMENT_REQUEST });
-    const { data } = await axios.put(
-      '/api/post/edit-comment/' + id,
-      body,
-      config
-    );
-    // console.log(data);
+    await axios.put('/api/post/edit-comment/' + id, body, config);
     // dispatch({ type: EDIT_COMMENT_SUCCESS, payload: data });
     dispatch({ type: POST_ONE_SUCCESS });
   } catch (error) {

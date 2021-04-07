@@ -20,6 +20,7 @@ import Footer from './layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
 import './App.scss';
+import FireStoreUpload from './components/FireStoreUpload';
 
 const App = () => {
   return (
@@ -49,7 +50,6 @@ const App = () => {
               component={RegisterCompleteScreen}
               title="Complete"
             />
-
             {/* Private routes */}
             <PrivateRoutes
               exact
@@ -69,7 +69,6 @@ const App = () => {
               component={FavoriteScreen}
               title="Favorites"
             />
-
             {/* Admin routes */}
             <AdminRoutes
               exact
@@ -83,6 +82,12 @@ const App = () => {
               component={CreatePostScreen}
               title="Create"
             />
+            <Route
+              exact
+              path="/firebase"
+              component={FireStoreUpload}
+              title="Firebase"
+            ></Route>
             <Route path="*">
               <div className="path-notfound-404">
                 <img src="/error.svg" alt="Path not found" />

@@ -30,7 +30,7 @@ export const interceptor = (store) => {
     },
     (error) => {
       // You can handle error here and trigger warning message without get in the code inside
-      const { status, data, config } = error.response;
+      const { status } = error.response;
       store.dispatch({
         type: ERROR_MESSAGE,
         payload:

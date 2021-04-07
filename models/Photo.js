@@ -4,6 +4,7 @@ const PhotoSchema = mongoose.Schema(
   {
     name: String,
     route: String,
+    link: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'UserModel',

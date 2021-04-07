@@ -1,8 +1,9 @@
+/** WORK WITH THE FILE PHOTO.JS */
 import React, { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ProgressBar } from 'react-bootstrap';
 import axios, { CancelToken } from 'axios';
-import { storage } from '../firebase';
+
 import '../styles/DropZone.scss';
 
 const Dropzone = ({ id }) => {
@@ -152,82 +153,51 @@ const Dropzone = ({ id }) => {
     uploadModalRef.current.style.display = 'none';
   };
 
-  /**TODO: Execute Http method POST Axios with Firebase Storage*/
+  /**TODO: Execute Http method POST Axios */
   const uploadFiles = async () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     uploadModalRef.current.style.display = 'block';
     uploadRef.current.innerHTML = 'File(s) Uploading...';
-
-    for (const image of validFiles) {
-      firebaseImg(image, createImgUrl(image));
+    let formData = new FormData();
+    for (const file of validFiles) {
+      formData.append('fileInput', file, file.name);
     }
-  };
-  // Store path firebase Image
-  const createImgUrl = (img) => {
-    return `post/${userInfo.user.tokenUser}/${img.name}`;
-  };
+    formData.append('key', '');
+    formData.append('postId', id);
 
-  const firebaseImg = (image, path) => {
-    const uploadTaks = storage.ref(path).put(image);
-    uploadTaks.on(
-      'state_changed',
-      (snapshot) => {
-        let percent = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        if (percent < 100) {
-          setUploadPercentage(percent);
-        }
-      },
-      (error) => {},
-      () => {
-        storage
-          .ref(`post/${userInfo.user.tokenUser}`)
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            const objImage = {
-              postId: id,
-              imgName: image.name,
-              link: url,
-            };
-
-            axios
-              .post('/api/img/post/image', objImage, {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${userInfo.token}`,
-                },
-                onUploadProgress: (progressEvent) => {
-                  let percent = Math.floor(
-                    (progressEvent.loaded / progressEvent.total) * 100
-                  );
-                  if (percent < 100) {
-                    setUploadPercentage(percent);
-                  }
-                },
-                cancelToken: new CancelToken(
-                  (cancel) => (cancelFileUpload.current = cancel)
-                ),
-              })
-              .then(() => {
-                setUploadPercentage(100);
-                uploadRef.current.innerHTML = 'File(s) Uploaded';
-                validFiles.length = 0;
-                setValidFiles([...validFiles]);
-                setSelectedFiles([...validFiles]);
-                setUnsupportedFiles([...validFiles]);
-                setTimeout(() => {
-                  setUploadPercentage(0);
-                  uploadModalRef.current.style.display = 'none';
-                }, 2000);
-              })
-              .catch((err) => {
-                uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
-              });
-          });
-      }
-    );
+    axios
+      .post('/api/img/post', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+        onUploadProgress: (progressEvent) => {
+          let percent = Math.floor(
+            (progressEvent.loaded / progressEvent.total) * 100
+          );
+          if (percent < 100) {
+            setUploadPercentage(percent);
+          }
+        },
+        cancelToken: new CancelToken(
+          (cancel) => (cancelFileUpload.current = cancel)
+        ),
+      })
+      .then(() => {
+        setUploadPercentage(100);
+        uploadRef.current.innerHTML = 'File(s) Uploaded';
+        validFiles.length = 0;
+        setValidFiles([...validFiles]);
+        setSelectedFiles([...validFiles]);
+        setUnsupportedFiles([...validFiles]);
+        setTimeout(() => {
+          setUploadPercentage(0);
+          uploadModalRef.current.style.display = 'none';
+        }, 2000);
+      })
+      .catch((err) => {
+        uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
+      });
   };
 
   return (

@@ -12,7 +12,7 @@ function ScrollToTop({ history, children }) {
     return () => {
       unlisten();
     };
-  }, [pathname]);
+  }, [history, pathname]);
 
   return <Fragment>{children}</Fragment>;
 }

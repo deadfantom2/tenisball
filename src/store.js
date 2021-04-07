@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 import {
   userRegisterReducer,
   userLoginReducer,
@@ -44,17 +44,18 @@ const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
 };
 
-const middleware = [thunk];
+// const middleware = [thunk];
 
-const composeEnhancers = composeWithDevTools({
-  trace: true,
-  traceLimit: 25,
-});
+// const composeEnhancers = composeWithDevTools({
+//   trace: true,
+//   traceLimit: 25,
+// });
 
 const store = createStore(
   reducer,
   initialState,
-  composeEnhancers(applyMiddleware(...middleware))
+  applyMiddleware(thunk)
+  // composeEnhancers(applyMiddleware(...middleware))
   // composeWithDevTools(applyMiddleware(...middleware))
 );
 

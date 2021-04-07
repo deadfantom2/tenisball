@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { onePost, editPost } from '../actions/postActions';
-import { POST_ONE_RESET, EDIT_POST_RESET } from '../constants/postConstants';
-import { deleteImage } from '../actions/imageActions';
+import { POST_ONE_RESET } from '../constants/postConstants';
+import { deleteImageFirebase } from '../actions/imageActions';
 import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
 import CEPostForm from '../components/CEPostForm';
 import DropZone from '../components/DropZone ';
@@ -13,6 +13,7 @@ import '../styles/EditScreen.scss';
 const EditPost = ({ history, match }) => {
   const postId = match.params.id;
   const [idImage, setIdImage] = useState(null);
+  const [pathFirebaseImg, setPathFirebaseImg] = useState('');
   const [title, setTitle] = useState('');
   const [certificate, setCertificate] = useState('');
   const [description, setDescription] = useState('');
@@ -29,6 +30,7 @@ const EditPost = ({ history, match }) => {
   const firstElement = useRef(null);
 
   const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userLogin);
   const { loading, post } = useSelector((state) => state.postOne);
 
   useEffect(() => {
@@ -61,6 +63,9 @@ const EditPost = ({ history, match }) => {
   };
 
   const showConfirmModal = (value) => {
+    const {
+      photo: { _id, route, name },
+    } = value;
     setShowModal(true);
     setInfoModal({
       position: 2,
@@ -68,11 +73,12 @@ const EditPost = ({ history, match }) => {
       body: 'Do you want delete this image?',
       footer: 'Delete Image',
     });
-    setIdImage(value.photo._id);
+    setIdImage(_id);
+    setPathFirebaseImg(`${route}/${userInfo.user.tokenUser}/${name}`);
   };
 
   const removeImage = () => {
-    dispatch(deleteImage({ idPhoto: idImage }));
+    dispatch(deleteImageFirebase({ idPhoto: idImage }, pathFirebaseImg));
     setShowModal(!showModal);
   };
 

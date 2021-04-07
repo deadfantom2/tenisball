@@ -54,7 +54,7 @@ app.post('/send-about-coin', async (req, res) => {
 //   res.status(err.status || 500);
 // });
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'productions') {
   console.log('Mode Production is runnig...');
 
   app.use(express.static(path.join(__dirname, '/build')));

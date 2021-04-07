@@ -16,6 +16,7 @@ router.use(
   })
 );
 
+// Method ADD IMAGE with storage on the server Nodejs
 router.post('/:type', async (req, res) => {
   try {
     // Fail, if not files
@@ -57,7 +58,7 @@ router.post('/:type', async (req, res) => {
     newArchiveImages.map(async (img) => {
       path = pathFolders + '/' + renameImage(img);
       await img.mv(path);
-      await downloadByType(type, postId, renameImage(img), id);
+      await downloadByType(type, postId, renameImage(img), id, '');
     });
     return res
       .status(201)
@@ -67,11 +68,26 @@ router.post('/:type', async (req, res) => {
   }
 });
 
-const downloadByType = async (typeRoute, postId, imgName, id) => {
+// Method ADD IMAGE with storage on the server Firebase
+router.post('/post/image', async (req, res) => {
+  try {
+    const { id } = req.user;
+    const type = 'post';
+    const { postId, imgName, link } = req.body;
+
+    await downloadByType(type, postId, imgName, id, link);
+    return res.status(201).json({ message: `Image has beed uploaded!` });
+  } catch (error) {
+    return res.status(500).json({ message: 'Something is wrong!' });
+  }
+});
+
+const downloadByType = async (typeRoute, postId, imgName, id, link) => {
   await Photo.findOne({ name: imgName });
   const newImg = await Photo.create({
     name: imgName,
     route: typeRoute,
+    link: link,
     post: postId,
     user: id,
   });
@@ -97,6 +113,7 @@ const downloadByType = async (typeRoute, postId, imgName, id) => {
   );
 };
 
+// Method DELETE IMAGE with storage on the server Nodejs
 router.put('/delete-img', checkAuth, checkAdmin, async (req, res) => {
   try {
     const { id } = req.user;
@@ -122,6 +139,31 @@ router.put('/delete-img', checkAuth, checkAdmin, async (req, res) => {
     if (fs.existsSync(pathPhoto)) {
       fs.unlinkSync(pathPhoto);
     }
+    return res.status(200).json({ message: 'You deleted an image!' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Something is wrong!' });
+  }
+});
+
+// Method DELETE IMAGE with storage on the server Firebase
+router.put('/delete/image', checkAuth, checkAdmin, async (req, res) => {
+  try {
+    const { idPhoto } = req.body;
+
+    const deletePhoto = await Photo.findOneAndDelete({ _id: idPhoto });
+    await Post.updateOne(
+      { _id: deletePhoto.post },
+      {
+        $pull: { photos: { photo: deletePhoto._id } },
+      }
+    );
+    await User.updateOne(
+      { _id: deletePhoto.user },
+      {
+        $pull: { photos: { photo: deletePhoto._id } },
+      }
+    );
+
     return res.status(200).json({ message: 'You deleted an image!' });
   } catch (error) {
     return res.status(500).json({ message: 'Something is wrong!' });

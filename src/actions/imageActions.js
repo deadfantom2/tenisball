@@ -4,6 +4,7 @@ import {
   DELETE_IMAGE_FAIL,
 } from '../constants/imageConstants';
 import axios from 'axios';
+import { storage } from '../firebase';
 
 export const getAuthInfo = (getState) => {
   const {
@@ -48,6 +49,50 @@ export const deleteImage = (property) => async (dispatch, getState) => {
     });
 
     // const deletePhoto = post.photos.splice(indexPhoto, 1);
+  } catch (error) {
+    dispatch({
+      type: DELETE_IMAGE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const deleteImageFirebase = (property, pathFirebaseUrlImg) => async (
+  dispatch,
+  getState
+) => {
+  const config = getAuthInfo(getState);
+  const { idPhoto } = property;
+  const {
+    postOne: { post },
+  } = getState();
+
+  try {
+    dispatch({ type: DELETE_IMAGE_REQUEST });
+    const { data } = await axios.put('/api/img/delete/image', property, config);
+    dispatch({ type: DELETE_IMAGE_SUCCESS, payload: data.message });
+
+    const newPhotos = post.photos.filter((item) => {
+      return item.photo._id !== idPhoto;
+    });
+    dispatch({
+      type: 'POST_ONE_SUCCESS',
+      payload: { ...post, photos: newPhotos },
+    });
+
+    // `post/${userInfo.user.tokenUser}`
+    const deleteImg = storage.ref(pathFirebaseUrlImg);
+    deleteImg
+      .delete()
+      .then((res) => {
+        // File deleted successfully
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+      });
   } catch (error) {
     dispatch({
       type: DELETE_IMAGE_FAIL,
