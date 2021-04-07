@@ -94,6 +94,7 @@ const UserSchema = mongoose.Schema(
         title: { type: String },
         folderPhoto: { type: String },
         photo: { type: String },
+        link: { type: String },
         userId: { type: mongoose.Schema.Types.ObjectId, required: true },
         postId: { type: mongoose.Schema.Types.ObjectId, required: true },
         createdAt: { type: Date, default: new Date() },

@@ -23,12 +23,14 @@ const Post = ({ post }) => {
   };
 
   const postFavorite = (post) => {
+    console.log(post);
     const { _id, title, photos } = post;
     if (post.photos.length > 0) {
       dispatch(
         addInFavoritePost({
           title,
           folderPhoto: photos[0].photo.user,
+          link: photos[0].photo.link,
           photo: photos[0].photo.name,
           postId: _id,
         })

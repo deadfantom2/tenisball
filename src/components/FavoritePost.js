@@ -11,6 +11,7 @@ const FavoritePost = ({ favorite, doUnFavorite }) => {
   const photo = {
     route: 'post',
     user: favorite.folderPhoto,
+    link: favorite.link,
     name: favorite.photo,
   };
 

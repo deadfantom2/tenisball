@@ -69,7 +69,7 @@ router.delete('/delete-profile', checkAuth, async (req, res) => {
 
 /** ------------------------ADD A POST IN FAVORITE------------------------------ */
 router.post('/add-favorite', checkAuth, async (req, res) => {
-  const { postId, title, folderPhoto, photo } = req.body;
+  const { postId, title, folderPhoto, photo, link } = req.body;
   const { id: _userId } = req.user;
   try {
     new Promise(async (resolve, reject) => {
@@ -83,6 +83,7 @@ router.post('/add-favorite', checkAuth, async (req, res) => {
             favorites: {
               title: title,
               folderPhoto: folderPhoto,
+              link: link,
               photo: photo,
               postId: postId,
               userId: _userId,

@@ -53,21 +53,19 @@ const Photo = ({ photo, postTitle, styleClass }) => {
   }
 
   return (
-    <>
-      <Spinner
-        animation="border"
-        role="status"
-        ref={imgRef}
-        style={{
-          width: '100px',
-          height: '100px',
-          margin: 'auto',
-          display: 'block',
-        }}
-      >
-        <span className="sr-only">Loading...</span>
-      </Spinner>
-    </>
+    <Spinner
+      animation="border"
+      role="status"
+      ref={imgRef}
+      style={{
+        width: '100px',
+        height: '100px',
+        margin: 'auto',
+        display: 'block',
+      }}
+    >
+      <span className="sr-only">Loading...</span>
+    </Spinner>
   );
 };
 
