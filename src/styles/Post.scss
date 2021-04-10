@@ -30,6 +30,7 @@
 
     &_title,
     &_certif {
+      font-family: sans-serif;
       text-align: center;
       display: flex;
       justify-content: center;
@@ -41,16 +42,21 @@
       height: 3rem;
     }
     &_text {
-      margin-left: 1rem;
+      display: flex;
+      align-items: center;
 
-      & > a > h6 {
-        margin: 0.5rem 0 0 0;
+      & > img {
+        margin-left: 1.25rem;
         color: grey;
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
       }
 
-      & > p {
-        margin: 0 0 0.5rem 0;
+      & > a > h6 {
+        margin-left: 1.25rem;
         color: grey;
+        cursor: pointer;
       }
     }
     &_certif {

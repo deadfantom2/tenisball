@@ -16,12 +16,17 @@ const HomeScreen = () => {
 
   return (
     <LoadAndErrorContainer loading={loading} title="All posts">
-      {posts.length > 0 &&
+      {posts.length > 0 ? (
         posts.map((post) => (
           <Col sm={12} md={6} lg={4} xl={3} key={post._id} className="col item">
             <Post post={post} />
           </Col>
-        ))}
+        ))
+      ) : (
+        <div className="not-posts">
+          <h3>Not have yet any posts</h3>
+        </div>
+      )}
     </LoadAndErrorContainer>
   );
 };

@@ -1,3 +1,10 @@
 .modal {
-  // top: 16rem;
+  top: 16rem;
+}
+
+@media only screen and (max-width: 992px),
+  (min-device-width: 992px) and (max-device-width: 992px) {
+  .modal {
+    top: 0;
+  }
 }

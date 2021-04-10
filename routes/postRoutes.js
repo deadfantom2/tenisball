@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', checkAuth, async (req, res) => {
   try {
     const post = await Post.findById({ _id: req.params.id })
-      .populate('user')
+      .populate('user', 'name avatar')
       .populate('comments.comment')
       .populate('photos.photo');
 

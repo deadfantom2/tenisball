@@ -8,9 +8,6 @@ import {
   POST_ONE_REQUEST,
   POST_ONE_SUCCESS,
   POST_ONE_FAIL,
-  ADD_COMMENT_REQUEST,
-  ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAIL,
   ADD_LIKE_COMMENT_REQUEST,
   ADD_LIKE_COMMENT_SUCCESS,
   ADD_LIKE_COMMENT_FAIL,
@@ -136,13 +133,29 @@ export const editPost = (id, property) => async (dispatch, getState) => {
   }
 };
 
-export const addLikePost = (body) => async (dispatch, getState) => {
+export const addLikePost = (body, post) => async (dispatch, getState) => {
   const config = getAuthInfo(getState);
+  const {
+    userLogin: { userInfo },
+    postList: { posts },
+  } = getState();
+
+  const { _id } = post;
+
+  const userT = userInfo.user.tokenUser.toString().split('').reverse().join('');
 
   try {
     dispatch({ type: ADD_LIKE_REQUEST });
     const { data } = await axios.post('/api/post/like-post', body, config);
+    console.log(data);
     dispatch({ type: ADD_LIKE_SUCCESS, payload: data });
+
+    posts.map((post) => {
+      return (
+        post._id === _id &&
+        post.likes.unshift({ userId: userT, _id: 1, name: userInfo.user.name })
+      );
+    });
   } catch (error) {
     dispatch({ type: ADD_LIKE_FAIL });
   }
@@ -165,17 +178,17 @@ export const addCommentPost = (body) => async (dispatch, getState) => {
   const {
     postOne: { post },
   } = getState();
+  console.log(post);
 
+  /**Use dispatch POST ONE for creation */
   try {
-    dispatch({ type: ADD_COMMENT_REQUEST });
     const { data } = await axios.post('/api/post/add-comment', body, config);
-    dispatch({ type: ADD_COMMENT_SUCCESS, payload: data });
     const newComment = post.comments.unshift({
       comment: data.comment,
     });
     dispatch({ type: POST_ONE_SUCCESS, payload: { ...post, newComment } });
   } catch (error) {
-    dispatch({ type: ADD_COMMENT_FAIL });
+    dispatch({ type: POST_ONE_FAIL });
   }
 };
 

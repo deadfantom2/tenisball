@@ -30,7 +30,7 @@ const Dropzone = ({ id }) => {
       }
     }, []);
     setValidFiles([...filteredArr]);
-  }, [selectedFiles]);
+  }, [selectedFiles, id]);
 
   /**TODO: Event Drag&Drop */
   const dragOver = (e) => {
@@ -128,10 +128,7 @@ const Dropzone = ({ id }) => {
 
   /**TODO: Display/ Close Modals  */
   const openImageModal = (file) => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const reader = new FileReader();
     modalRef.current.style.display = 'block';
     reader.readAsDataURL(file);
@@ -154,6 +151,8 @@ const Dropzone = ({ id }) => {
 
   /**TODO: Execute Http method POST Axios with Firebase Storage*/
   const uploadFiles = async () => {
+    console.log('updatefiles id: ');
+    console.log('updatefiles id: ', id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     uploadModalRef.current.style.display = 'block';
     uploadRef.current.innerHTML = 'File(s) Uploading...';
@@ -223,6 +222,7 @@ const Dropzone = ({ id }) => {
                 }, 2000);
               })
               .catch((err) => {
+                console.log('err: ', err);
                 uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
               });
           });

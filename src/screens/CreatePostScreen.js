@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Form } from 'react-bootstrap';
 import { CREATE_POST_RESET } from '../constants/postConstants';
 import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
 import { createPost } from '../actions/postActions';
@@ -20,9 +21,11 @@ const CreatePostScreen = () => {
   const { loading, newpost } = useSelector((state) => state.addPost);
 
   useEffect(() => {
-    if (newpost && Object.keys(newpost).indexOf('post') > 0) {
+    console.log('newpost: ', newpost);
+    if (Object.keys(newpost).indexOf('post') > 0) {
       setId(newpost.post._id);
     }
+
     return () => {
       id && dispatch({ type: CREATE_POST_RESET });
     };
@@ -30,6 +33,9 @@ const CreatePostScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (id !== '') {
+      setId('');
+    }
     dispatch(
       createPost({
         title,
@@ -61,9 +67,8 @@ const CreatePostScreen = () => {
             description={description}
             setDescription={setDescription}
             textBtn="Create post"
-          >
-            {id && <DropZone id={id} />}
-          </CEPostForm>
+          ></CEPostForm>
+          <Form.Group> {id && <DropZone id={id} />}</Form.Group>
         </div>
       </LoadAndErrorContainer>
     </>

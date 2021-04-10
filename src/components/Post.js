@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Photo from './Photo';
-import { addInFavoritePost } from '../actions/userActions';
+import { sendEmailContact, addInFavoritePost } from '../actions/userActions';
+import ContactModal from './ContactModal';
 import { addLikePost } from '../actions/postActions';
 import LikeCommentBar from '../components/LikeCommentBar';
 import '../styles/Post.scss';
 
 const Post = ({ post }) => {
+  let [showModal, setShowModal] = useState(false);
+
   const dispatch = useDispatch();
 
   const checkCertificate = (certificate) => {
@@ -19,7 +22,8 @@ const Post = ({ post }) => {
   };
 
   const postLike = (post) => {
-    dispatch(addLikePost({ _id: post._id }));
+    console.log(post);
+    dispatch(addLikePost({ _id: post._id }, post));
   };
 
   const postFavorite = (post) => {
@@ -37,6 +41,17 @@ const Post = ({ post }) => {
     } else {
       /**TODO IF NOT PHOTO DO SOMETHINGS   */
     }
+  };
+
+  const sendEmail = (body) => {
+    const { emailContact, nameContact, messageContact } = body;
+    dispatch(
+      sendEmailContact({
+        email: emailContact,
+        name: nameContact,
+        message: messageContact,
+      })
+    );
   };
 
   return (
@@ -60,10 +75,14 @@ const Post = ({ post }) => {
           {checkCertificate(post.certificate)}
         </div>
         <div className="coin_post__body_text">
+          <img
+            src="/send_mail.svg"
+            alt="send email"
+            onClick={() => setShowModal(true)}
+          />
           <Link to={`/post/${post._id}`}>
             <h6>More details...</h6>
           </Link>
-          <p>Send message to ask about coin</p>
         </div>
       </div>
       <div className="coin_post__footer">
@@ -74,6 +93,13 @@ const Post = ({ post }) => {
           doFavorite={postFavorite}
         />
       </div>
+
+      <ContactModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        sendEmail={sendEmail}
+        title={post.title}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Photo from './Photo';
-import ConfirmModal from './ContactModal';
+import ContactModal from './ContactModal';
 import { sendEmailContact } from '../actions/userActions';
 import '../styles/FavoritePost.scss';
 
@@ -43,7 +43,7 @@ const FavoritePost = ({ favorite, doUnFavorite }) => {
       <Photo photo={photo} postTitle={favorite.title} styleClass="image" />
       <div className="favorite-title">{favorite.title}</div>
 
-      <ConfirmModal
+      <ContactModal
         showModal={showModal}
         setShowModal={setShowModal}
         sendEmail={sendEmail}

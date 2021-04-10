@@ -36,13 +36,19 @@ const FavoriteScreen = () => {
     <>
       <LoadAndErrorContainer loading={loading} title="Your favorites">
         <div className="main-favorite-page">
-          {favorites.map((item, index) => (
-            <FavoritePost
-              key={index}
-              favorite={item}
-              doUnFavorite={doUnFavorite}
-            />
-          ))}
+          {favorites.length > 0 ? (
+            favorites.map((item, index) => (
+              <FavoritePost
+                key={index}
+                favorite={item}
+                doUnFavorite={doUnFavorite}
+              />
+            ))
+          ) : (
+            <div className="not-favorites">
+              <h3>You don't have any favorites post</h3>
+            </div>
+          )}
         </div>
       </LoadAndErrorContainer>
     </>

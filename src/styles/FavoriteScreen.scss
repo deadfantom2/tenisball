@@ -4,6 +4,16 @@
   flex-wrap: wrap;
 }
 
+.not-favorites {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  & > h3 {
+    color: grey;
+  }
+}
+
 @media only screen and (max-width: 767px),
   (min-device-width: 767px) and (max-device-width: 767px) {
   .main-favorite-page {
