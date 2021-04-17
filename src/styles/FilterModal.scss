@@ -1,0 +1,33 @@
+ul {
+  padding: 0;
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+
+  &-row {
+    width: 33%;
+    margin-top: 0.25rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > input {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px),
+  (min-device-width: 992px) and (max-device-width: 992px) {
+  .filter {
+    &-row {
+      width: 50%;
+    }
+  }
+
+  .modal {
+    margin-top: 9rem;
+  }
+}

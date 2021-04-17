@@ -19,6 +19,7 @@ const EditPost = ({ history, match }) => {
   const [description, setDescription] = useState('');
   const [bitkin, setBitkin] = useState('');
   const [petrov, setPetrov] = useState('');
+  const [imperator, setImperator] = useState('');
   const [link_video, setLink_video] = useState('');
   const [photos, setPhotos] = useState([]);
   let [showModal, setShowModal] = useState(false);
@@ -42,6 +43,7 @@ const EditPost = ({ history, match }) => {
       setDescription(post.description);
       setBitkin(post.bitkin);
       setPetrov(post.petrov);
+      setImperator(post.imperator);
       setLink_video(post.link_video);
       setPhotos(post.photos);
     }
@@ -57,6 +59,7 @@ const EditPost = ({ history, match }) => {
         description,
         bitkin,
         petrov,
+        imperator,
         link_video,
       })
     );
@@ -94,12 +97,15 @@ const EditPost = ({ history, match }) => {
             setBitkin={setBitkin}
             petrov={petrov}
             setPetrov={setPetrov}
+            imperator={imperator}
+            setImperator={setImperator}
             link_video={link_video}
             setLink_video={setLink_video}
             certificate={certificate}
             setCertificate={setCertificate}
             description={description}
             setDescription={setDescription}
+            type="edit"
             textBtn="Edit post"
           >
             <DropZone id={postId} />

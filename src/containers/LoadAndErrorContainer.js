@@ -6,7 +6,14 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import '../styles/LoadAndErrorContainer.scss';
 
-const LoadAndErrorContainer = ({ children, loading, title }) => {
+const LoadAndErrorContainer = ({
+  children,
+  loading,
+  title,
+  setShowModal,
+  activeBtn,
+  filter,
+}) => {
   const { message } = useSelector((state) => state.successMsg);
   const { error } = useSelector((state) => state.errorMsg);
 
@@ -14,10 +21,19 @@ const LoadAndErrorContainer = ({ children, loading, title }) => {
     <>
       <div className="panel-back">
         <Container>
-          <Link to="/" className="btn btn-light my-3">
-            Go back
-          </Link>
+          {!activeBtn && (
+            <Link to="/" className="btn btn-light my-3">
+              Go back
+            </Link>
+          )}
+
           <span>{title}</span>
+          {filter && (
+            <i
+              className="fas fa-filter btn__filter"
+              onClick={() => setShowModal(true)}
+            ></i>
+          )}
         </Container>
       </div>
       {loading && <Loader />}

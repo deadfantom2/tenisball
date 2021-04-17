@@ -15,7 +15,6 @@ const LikeCommentBar = ({ postOrComment, param, doLike, doFavorite }) => {
     }
     return userInfo !== undefined && userInfo !== null
       ? arr.some(({ name }) => {
-          console.log('e');
           return name === userInfo.user.name;
         })
       : false;

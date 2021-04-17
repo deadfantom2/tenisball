@@ -2,6 +2,8 @@ import {
   POST_LIST_REQUEST,
   POST_LIST_SUCCESS,
   POST_LIST_FAIL,
+  POST_ACTIVE_FILTER_LIST,
+  POST_FILTER_LIST,
   ADD_LIKE_REQUEST,
   ADD_LIKE_SUCCESS,
   ADD_LIKE_FAIL,
@@ -108,12 +110,21 @@ export const editPost = (id, property) => async (dispatch, getState) => {
 
     dispatch({ type: EDIT_POST_SUCCESS, payload: data.message });
 
-    let { title, certificate, description, bitkin, petrov, link_video } = post;
+    let {
+      title,
+      certificate,
+      description,
+      bitkin,
+      petrov,
+      imperator,
+      link_video,
+    } = post;
     title = property.title;
     certificate = property.certificate;
     description = property.description;
     bitkin = property.bitkin;
     petrov = property.petrov;
+    imperator = property.imperator;
     link_video = property.link_video;
 
     dispatch({
@@ -125,6 +136,7 @@ export const editPost = (id, property) => async (dispatch, getState) => {
         description,
         bitkin,
         petrov,
+        imperator,
         link_video,
       },
     });
@@ -147,7 +159,6 @@ export const addLikePost = (body, post) => async (dispatch, getState) => {
   try {
     dispatch({ type: ADD_LIKE_REQUEST });
     const { data } = await axios.post('/api/post/like-post', body, config);
-    console.log(data);
     dispatch({ type: ADD_LIKE_SUCCESS, payload: data });
 
     posts.map((post) => {
@@ -178,7 +189,6 @@ export const addCommentPost = (body) => async (dispatch, getState) => {
   const {
     postOne: { post },
   } = getState();
-  console.log(post);
 
   /**Use dispatch POST ONE for creation */
   try {
@@ -240,4 +250,24 @@ export const reportSomeComment = (body) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({ type: REPORT_COMMENT_FAIL });
   }
+};
+
+export const filterActivePost = (property) => (dispatch) => {
+  dispatch({ type: POST_ACTIVE_FILTER_LIST, payload: property });
+};
+
+export const filterPost = (property) => (dispatch, getState) => {
+  const {
+    postList: { posts },
+  } = getState();
+
+  const filteredPosts = posts.filter((task) => {
+    return Object.keys(property).every((filterAttribute) => {
+      return property[filterAttribute].some((filterValue) => {
+        return filterValue === task[filterAttribute];
+      });
+    });
+  });
+
+  dispatch({ type: POST_FILTER_LIST, payload: filteredPosts });
 };

@@ -1,24 +1,8 @@
 import React from 'react';
 import { Form, Image, Dropdown } from 'react-bootstrap';
+import { tsars } from '../outils/TsarList';
 
 const AvatarList = ({ setAvatar }) => {
-  const tsars = [
-    { name: 'Petr 1', photoPath: '/images/petr1.jpg' },
-    { name: 'Ekaterina 1', photoPath: '/images/ekaterina1.jpg' },
-    { name: 'Petr 2', photoPath: '/images/petr2.jpg' },
-    { name: 'Anna Ioannovna', photoPath: '/images/anna.jpg' },
-    { name: 'Ioann Antonovich', photoPath: '/images/anton.jpg' },
-    { name: 'Elizaveta', photoPath: '/images/elizaveta.jpg' },
-    { name: 'Petr 3', photoPath: '/images/petr3.jpg' },
-    { name: 'Ekaterina 2', photoPath: '/images/ekaterina2.jpg' },
-    { name: 'Pavel 1', photoPath: '/images/pavel1.jpg' },
-    { name: 'Aleksandr 1', photoPath: '/images/aleksandr1.jpg' },
-    { name: 'Nicolai 1', photoPath: '/images/nicolas1.jpg' },
-    { name: 'Aleksandr 2', photoPath: '/images/aleksandr2.jpg' },
-    { name: 'Aleksandr 3', photoPath: '/images/aleksandr3.jpg' },
-    { name: 'Nicolai 2', photoPath: '/images/nicolas2.jpg' },
-  ];
-
   return (
     <Form.Group controlId="avatar">
       <Dropdown>

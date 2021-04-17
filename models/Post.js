@@ -11,6 +11,7 @@ const PostSchema = mongoose.Schema(
     title: { type: String, default: '' },
     bitkin: { type: String },
     petrov: { type: String },
+    imperator: { type: String, default: 'petr1' },
     certificate: { type: String },
     description: { type: String },
     link_video: { type: String },

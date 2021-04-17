@@ -16,13 +16,14 @@ const Post = ({ post }) => {
   const checkCertificate = (certificate) => {
     return certificate === 'NGC' ? (
       <img src="ngc.svg" width="100px" height="36px" alt="NGC" />
-    ) : (
+    ) : certificate === 'PCGS' ? (
       <img src="pcgs.svg" width="100px" height="28px" alt="PCGS" />
+    ) : (
+      <span>No slabe</span>
     );
   };
 
   const postLike = (post) => {
-    console.log(post);
     dispatch(addLikePost({ _id: post._id }, post));
   };
 

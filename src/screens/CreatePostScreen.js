@@ -15,17 +15,16 @@ const CreatePostScreen = () => {
   const [description, setDescription] = useState('');
   const [bitkin, setBitkin] = useState('');
   const [petrov, setPetrov] = useState('');
+  const [imperator, setImperator] = useState('');
   const [link_video, setLink_video] = useState('');
 
   const dispatch = useDispatch();
   const { loading, newpost } = useSelector((state) => state.addPost);
 
   useEffect(() => {
-    console.log('newpost: ', newpost);
     if (Object.keys(newpost).indexOf('post') > 0) {
       setId(newpost.post._id);
     }
-
     return () => {
       id && dispatch({ type: CREATE_POST_RESET });
     };
@@ -43,6 +42,7 @@ const CreatePostScreen = () => {
         description,
         bitkin,
         petrov,
+        imperator,
         link_video,
       })
     );
@@ -60,12 +60,15 @@ const CreatePostScreen = () => {
             setBitkin={setBitkin}
             petrov={petrov}
             setPetrov={setPetrov}
+            imperator={imperator}
+            setImperator={setImperator}
             link_video={link_video}
             setLink_video={setLink_video}
             certificate={certificate}
             setCertificate={setCertificate}
             description={description}
             setDescription={setDescription}
+            type="create"
             textBtn="Create post"
           ></CEPostForm>
           <Form.Group> {id && <DropZone id={id} />}</Form.Group>

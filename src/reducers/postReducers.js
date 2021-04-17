@@ -2,6 +2,8 @@ import {
   POST_LIST_REQUEST,
   POST_LIST_SUCCESS,
   POST_LIST_FAIL,
+  POST_ACTIVE_FILTER_LIST,
+  POST_FILTER_LIST,
   POST_ONE_REQUEST,
   POST_ONE_SUCCESS,
   POST_ONE_FAIL,
@@ -12,14 +14,26 @@ import {
   CREATE_POST_RESET,
 } from '../constants/postConstants';
 
-export const postListReducer = (state = { posts: [] }, action) => {
+export const postListReducer = (
+  state = { posts: [], activeFilters: {}, filterPosts: [] },
+  action
+) => {
   switch (action.type) {
     case POST_LIST_REQUEST:
-      return { loading: true, posts: [] };
+      return {
+        loading: true,
+        posts: [],
+        activeFilters: {},
+        filterPosts: [],
+      };
     case POST_LIST_SUCCESS:
-      return { loading: false, posts: action.payload };
+      return { ...state, loading: false, posts: action.payload };
     case POST_LIST_FAIL:
       return { loading: false, posts: [] };
+    case POST_ACTIVE_FILTER_LIST:
+      return { ...state, activeFilters: action.payload };
+    case POST_FILTER_LIST:
+      return { ...state, filterPosts: action.payload };
     default:
       return state;
   }

@@ -20,7 +20,9 @@ router.get('/', async (req, res) => {
       .populate('comments.comment')
       .populate('photos.photo')
       .sort({ createdAt: -1 })
-      .select('_id title certificate likes totalLikes comments favorites');
+      .select(
+        '_id title certificate imperator likes totalLikes comments favorites'
+      );
     return res.status(200).json({ posts: posts });
   } catch (error) {
     console.log('error: ', error);
@@ -56,6 +58,7 @@ router.post('/add-post', checkAuth, checkAdmin, async (req, res) => {
         title: req.body.title,
         bitkin: req.body.bitkin,
         petrov: req.body.petrov,
+        imperator: req.body.imperator,
         certificate: req.body.certificate,
         description: req.body.description,
         link_video: req.body.link_video,
@@ -138,6 +141,7 @@ router.put('/edit-post/:id', checkAuth, checkAdmin, async (req, res) => {
       title: req.body.title,
       bitkin: req.body.bitkin,
       petrov: req.body.petrov,
+      imperator: req.body.imperator,
       certificate: req.body.certificate,
       description: req.body.description,
       link_video: req.body.link_video,

@@ -151,8 +151,6 @@ const Dropzone = ({ id }) => {
 
   /**TODO: Execute Http method POST Axios with Firebase Storage*/
   const uploadFiles = async () => {
-    console.log('updatefiles id: ');
-    console.log('updatefiles id: ', id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     uploadModalRef.current.style.display = 'block';
     uploadRef.current.innerHTML = 'File(s) Uploading...';
@@ -222,7 +220,7 @@ const Dropzone = ({ id }) => {
                 }, 2000);
               })
               .catch((err) => {
-                console.log('err: ', err);
+                // console.log('err: ', err);
                 uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
               });
           });
