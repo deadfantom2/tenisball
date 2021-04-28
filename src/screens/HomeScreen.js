@@ -4,7 +4,7 @@ import { Col } from 'react-bootstrap';
 import Post from '../components/Post';
 import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
 import { listPosts } from '../actions/postActions';
-import FilterModal from '../components/FilterModal';
+import FilterModal from '../Modal/FilterModal';
 import '../styles/HomeScreen.scss';
 
 const HomeScreen = () => {

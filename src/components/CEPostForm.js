@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { tsars } from '../outils/TsarList';
 import '../styles/CEPostForm.scss';
@@ -24,17 +24,15 @@ const CEPostForm = ({
   type,
 }) => {
   const certificates = [
+    { name: 'Choose certification', value: 'choose' },
     { name: 'No slabe', value: 'None' },
     { name: 'NGC', value: 'NGC' },
     { name: 'PCGS', value: 'PCGS' },
   ];
 
-  useEffect(() => {}, [certificate]);
-
-  const checkScreen = (value) => {
+  const checkFlagScreen = (value) => {
     if (type === 'edit') {
       if (value === 'certificate') {
-        console.log(certificate);
         return certificate;
       } else if (value === 'imperator') {
         return imperator;
@@ -91,14 +89,13 @@ const CEPostForm = ({
         </div>
         <div className="createandedit__panel_right">
           <Form.Group controlId="imperator">
-            <Form.Label>Imperators * {imperator}</Form.Label>
+            <Form.Label>Imperators *</Form.Label>
             <Form.Control
               as="select"
-              defaultValue={checkScreen('imperator')}
-              // defaultValue="Choose an Imperator"
+              value={checkFlagScreen('imperator')}
               onChange={(e) => setImperator(e.target.value)}
             >
-              <option disabled>Choose an Imperator</option>
+              <option>Choose an Imperator</option>
               {tsars.map((tsar, index) => (
                 <option key={index} value={tsar.imperator}>
                   {tsar.name}
@@ -107,16 +104,12 @@ const CEPostForm = ({
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="certificate">
-            <Form.Label>
-              Certificate * {certificate} - {checkScreen('certificate')}
-            </Form.Label>
+            <Form.Label>Certificate *</Form.Label>
             <Form.Control
               as="select"
-              defaultValue={checkScreen('certificate') || certificate}
-              // defaultValue="Choose certification"
+              value={checkFlagScreen('certificate')}
               onChange={(e) => setCertificate(e.target.value)}
             >
-              <option disabled>Choose certification</option>
               {certificates.map((certif, index) => (
                 <option key={index} value={certif.value}>
                   {certif.name}

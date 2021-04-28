@@ -25,6 +25,7 @@ const CreatePostScreen = () => {
     if (Object.keys(newpost).indexOf('post') > 0) {
       setId(newpost.post._id);
     }
+    console.log('id: ', id);
     return () => {
       id && dispatch({ type: CREATE_POST_RESET });
     };

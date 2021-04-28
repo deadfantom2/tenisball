@@ -40,8 +40,6 @@ See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
 
-/*! medium-zoom 1.0.6 | MIT License | https://github.com/francoischalifour/medium-zoom */
-
 /**
   * @license
   * Copyright 2017 Google LLC

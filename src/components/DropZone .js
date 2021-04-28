@@ -156,12 +156,17 @@ const Dropzone = ({ id }) => {
     uploadRef.current.innerHTML = 'File(s) Uploading...';
 
     for (const image of validFiles) {
+      console.log('image: ', image);
       firebaseImg(image, createImgUrl(image));
     }
   };
   // Store path firebase Image
   const createImgUrl = (img) => {
-    return `post/${userInfo.user.tokenUser}/${img.name}`;
+    return `post/${userInfo.user.tokenUser}/${renameImage(img)}`;
+  };
+  // Store rename Image
+  const renameImage = (img) => {
+    return `${img.size}_${img.name}`;
   };
 
   const firebaseImg = (image, path) => {
@@ -180,12 +185,12 @@ const Dropzone = ({ id }) => {
       () => {
         storage
           .ref(`post/${userInfo.user.tokenUser}`)
-          .child(image.name)
+          .child(renameImage(image))
           .getDownloadURL()
           .then((url) => {
             const objImage = {
               postId: id,
-              imgName: image.name,
+              imgName: renameImage(image),
               link: url,
             };
 

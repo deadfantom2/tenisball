@@ -7,7 +7,7 @@ import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
 import CEPostForm from '../components/CEPostForm';
 import DropZone from '../components/DropZone ';
 import Photo from '../components/Photo';
-import ConfirmModal from '../components/ConfirmModal';
+import ConfirmModal from '../Modal/ConfirmModal';
 import '../styles/EditScreen.scss';
 
 const EditPost = ({ history, match }) => {

@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useFormik, Formik } from 'formik';
 import * as Yup from 'yup';
 import LoadAndErrorContainer from '../containers/LoadAndErrorContainer';
-import ConfirmModal from '../components/ConfirmModal';
+import ConfirmModal from '../Modal/ConfirmModal';
 import {
   getProfileInfo,
   changeProfileInfo,

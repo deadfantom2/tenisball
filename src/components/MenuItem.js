@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ConfirmModal from './ConfirmModal';
+import ConfirmModal from '../Modal/ConfirmModal';
 import '../styles/MenuItem.scss';
 
 const MenuItem = ({ body, isYourComment, doReport, doEdit, doRemove }) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Photo from './Photo';
-import ContactModal from './ContactModal';
+import ContactModal from '../Modal/ContactModal';
 import { sendEmailContact } from '../actions/userActions';
 import '../styles/FavoritePost.scss';
 

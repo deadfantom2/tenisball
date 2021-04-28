@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Photo from './Photo';
 import { sendEmailContact, addInFavoritePost } from '../actions/userActions';
-import ContactModal from './ContactModal';
+import ContactModal from '../Modal/ContactModal';
 import { addLikePost } from '../actions/postActions';
 import LikeCommentBar from '../components/LikeCommentBar';
 import '../styles/Post.scss';

@@ -52,6 +52,6 @@ export const tsars = [
   {
     name: 'URSS',
     imperator: 'urss',
-    photoPath: '/images/nicolas2.jpg',
+    photoPath: '/images/urss.jpg',
   },
 ];
