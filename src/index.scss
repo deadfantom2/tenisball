@@ -1,33 +1,5 @@
-main {
-  min-height: 85vh;
-}
+// colors
+@import './styles/colors/colors.scss';
 
-@media only screen and (max-width: 992px),
-  (min-device-width: 992px) and (max-device-width: 992px) {
-  main {
-    min-height: 10vh;
-  }
-}
-
-input[type='text'],
-input[type='number'],
-input[type='email'],
-input[type='password'] {
-  border-radius: 1rem;
-}
-
-.avatar__tsar {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.fa,
-.far,
-.fas,
-.fab {
-  cursor: pointer;
-
-  &:hover {
-    text-shadow: 0 0 10px black;
-  }
-}
+// fonts
+@import './styles/fonts/index.scss';

@@ -1,49 +1,22 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-
-import {
-  userRegisterReducer,
-  userLoginReducer,
-  getprofileInfoReducer,
-} from './reducers/userReducers';
-import {
-  successMsgReducer,
-  errorMsgReducer,
-} from './reducers/messagesReducers';
-import {
-  postListReducer,
-  postOneReducer,
-  addPostReducer,
-} from './reducers/postReducers';
+import { tenisesListReducer } from './reducers/tenisReducers';
 
 const reducer = combineReducers({
-  userRegister: userRegisterReducer,
-  userLogin: userLoginReducer,
-  profileInfo: getprofileInfoReducer,
-  postList: postListReducer,
-  postOne: postOneReducer,
-  addPost: addPostReducer,
-  successMsg: successMsgReducer,
-  errorMsg: errorMsgReducer,
+  tenisesList: tenisesListReducer,
 });
 
-const token = localStorage.getItem('token');
-const user = JSON.parse(localStorage.getItem('userInfo'));
-const expires = localStorage.getItem('expires');
+const middleware = [thunk];
 
-const userInfoFromStorage =
-  token && user && expires
-    ? {
-        token: token,
-        user: user,
-        expiresIn: expires,
-      }
-    : null;
+const composeEnhancers = composeWithDevTools({
+  trace: true,
+  traceLimit: 25,
+});
 
-const initialState = {
-  userLogin: { userInfo: userInfoFromStorage },
-};
-
-const store = createStore(reducer, initialState, applyMiddleware(thunk));
+const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(...middleware))
+);
 
 export default store;

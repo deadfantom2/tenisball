@@ -1,17 +1,112 @@
-.not-posts {
+.home {
+  height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-  & > h3 {
-    color: grey;
+  &_players {
+    width: 50%;
+    padding-right: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    & > input {
+      width: 35rem;
+      padding: 1.25rem;
+      margin: 4rem 0 4rem 0;
+      border: 0;
+      font-family: MontserratBold;
+      font-size: 1.25rem;
+      letter-spacing: 0.15rem;
+      background-color: var(--orange-dark);
+      border-radius: 1.25rem;
+
+      &::placeholder {
+        color: var(--orange-light);
+        letter-spacing: 1px;
+      }
+    }
+
+    &_content {
+      height: 78.5vh;
+      overflow-y: scroll;
+    }
+
+    &_content::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+  }
+
+  &_logo {
+    width: 50%;
+    padding-top: 5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    & > img {
+      margin-top: 5rem;
+      transform: rotate(100deg);
+    }
   }
 }
 
 @media only screen and (max-width: 767px),
   (min-device-width: 767px) and (max-device-width: 767px) {
-  .item {
-    display: flex;
-    justify-content: center;
+  .home {
+    flex-direction: column;
+
+    &_players {
+      width: 100%;
+      padding-right: 0;
+      align-items: center;
+      height: 100vh;
+
+      & > input {
+        width: 20rem;
+        padding: 0.75rem;
+        margin: 2rem 0 2rem 0;
+        font-size: 1rem;
+        letter-spacing: 0.15rem;
+        border-radius: 1rem;
+      }
+
+      &_content {
+        height: 80vh;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1300px),
+  (min-device-width: 768px) and (max-device-width: 1300px) {
+  .home {
+    flex-direction: column;
+    overflow-y: hidden;
+    height: 100vh;
+    width: 100%;
+
+    &_players {
+      width: 100%;
+      margin: 0;
+      align-items: center;
+      z-index: 999;
+    }
+
+    &_logo {
+      width: 100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      opacity: 50%;
+
+      & > img {
+        width: 50rem;
+        height: 50rem;
+      }
+    }
   }
 }
